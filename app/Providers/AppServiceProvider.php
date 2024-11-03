@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\OrderedPizzaStatusUpdated;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Model::unguard();
+
+        // Event::listen(
+        //     OrderedPizzaStatusUpdated::class,
+        // );
     }
 }
