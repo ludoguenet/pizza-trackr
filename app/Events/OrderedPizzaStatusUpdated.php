@@ -31,7 +31,7 @@ class OrderedPizzaStatusUpdated implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('ordered-pizza.' . $this->order->id),
+            new PrivateChannel('App.Orders.' . $this->order->id),
         ];
     }
 }

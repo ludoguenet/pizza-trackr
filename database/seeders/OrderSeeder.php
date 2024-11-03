@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Order;
+use App\Models\User;
 use Database\Factories\OrderFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class OrderSeeder extends Seeder
 {
@@ -14,6 +16,11 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        Order::factory(10)->create();
+        $user = User::factory()->create([
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        Order::factory(10)->for($user)->create();
     }
 }

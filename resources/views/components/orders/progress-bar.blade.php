@@ -4,6 +4,7 @@
             <li class="relative md:flex md:flex-1">
                 <a href="#" class="group flex w-full items-center" :aria-current="step.current ? 'step' : null">
                     <span class="flex items-center px-6 py-4 text-sm font-medium">
+
                         <!-- Completed Step -->
                         <template x-if="step.completed">
                             <span
@@ -88,9 +89,11 @@
             init() {
                 this.fetchOrderProgress();
 
-                Echo.private(`ordered-pizza.${this.orderId}`)
+                Echo.private(`App.Orders.${this.orderId}`)
                     .listen('OrderedPizzaStatusUpdated', (event) => {
-                        this.updateSteps(event.order.status);
+                        const status = event.order.status;
+
+                        this.updateSteps(status);
                     })
             },
 
@@ -99,7 +102,7 @@
                     const response = await fetch(`/api/order-progress/${this.orderId}`);
                     const data = await response.json();
 
-                    this.updateSteps(data.stepIndex);
+                    this.updateSteps(data.status);
                 } catch (error) {
                     console.error('Erreur lors de la récupération des données:', error);
                 }
