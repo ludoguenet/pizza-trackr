@@ -17,7 +17,12 @@
                                 <p class="text-sm/6 font-semibold text-gray-900">Commande Pizza</p>
                                 <p class="mt-1 truncate text-xs/5 text-gray-500">
                                     <a href="{{ route('orders.show', $order) }}"
-                                        class="hover:text-gray-800">Consulter le tracking</a>
+                                        class="hover:text-gray-800 flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+Suivi
+                                        </a>
                                 </p>
                             </div>
                         </div>
@@ -26,9 +31,7 @@
                                 @csrf
                                 @method('PUT')
 
-                                <label for="status" class="block text-sm font-medium text-gray-700">Mettre à jour le
-                                    statut de la commande</label>
-                                <div class="flex items-start gap-3 mt-2">
+                                <div class="hidden shrink-0 sm:flex gap-2 items-center">
                                     <select id="status" name="status"
                                         class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                                         @foreach (OrderStatus::labels() as $value => $label)
@@ -39,21 +42,10 @@
                                     </select>
                                     <button type="submit"
                                         class="rounded-md bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                                        Update
+                                        Modifier
                                     </button>
                                 </div>
                             </form>
-
-
-                        </div>
-                        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm/6 text-gray-900">Status</p>
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                                <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                                    <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                                </div>
-                                <p class="text-xs/5 text-gray-500">Online</p>
-                            </div>
                         </div>
                     </li>
                 @empty
