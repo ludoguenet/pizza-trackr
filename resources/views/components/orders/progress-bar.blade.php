@@ -88,13 +88,6 @@
 
             init() {
                 this.fetchOrderProgress();
-
-                Echo.private(`App.Orders.${this.orderId}`)
-                    .listen('OrderedPizzaStatusUpdated', (event) => {
-                        const status = event.order.status;
-
-                        this.updateSteps(status);
-                    })
             },
 
             async fetchOrderProgress() {

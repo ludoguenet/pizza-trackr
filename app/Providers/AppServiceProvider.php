@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use App\Events\OrderedPizzaStatusUpdated;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use App\Events\OrderedPizzaStatusUpdated;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::unguard();
 
-        // Event::listen(
-        //     OrderedPizzaStatusUpdated::class,
-        // );
+        Gate::define('admin', fn (User $user) => $user->email === 'admin@gmail.com');
     }
 }

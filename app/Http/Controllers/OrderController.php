@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Events\OrderedPizzaStatusUpdated;
 
 class OrderController extends Controller
 {
@@ -26,8 +25,6 @@ class OrderController extends Controller
         $order->update([
             'status' => request()->status,
         ]);
-
-        OrderedPizzaStatusUpdated::dispatch($order);
 
         return back();
     }

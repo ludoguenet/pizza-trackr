@@ -17,6 +17,11 @@ class OrderSeeder extends Seeder
     public function run(): void
     {
         $user = User::factory()->create([
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        $user = User::factory()->create([
             'email' => 'test@gmail.com',
             'password' => Hash::make('password'),
         ]);

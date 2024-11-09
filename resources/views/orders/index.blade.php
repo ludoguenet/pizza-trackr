@@ -18,14 +18,17 @@
                                 <p class="mt-1 truncate text-xs/5 text-gray-500">
                                     <a href="{{ route('orders.show', $order) }}"
                                         class="hover:text-gray-800 flex items-center gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-</svg>
-Suivi
-                                        </a>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="size-3">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                        Suivi
+                                    </a>
                                 </p>
                             </div>
                         </div>
+                        @can('admin')
                         <div>
                             <form action="{{ route('orders.update', ['order' => $order]) }}" method="POST">
                                 @csrf
@@ -47,6 +50,7 @@ Suivi
                                 </div>
                             </form>
                         </div>
+                        @endcan
                     </li>
                 @empty
                     {{ __('No orders yet.') }}
