@@ -88,6 +88,15 @@
 
             init() {
                 this.fetchOrderProgress();
+
+                Echo.private(`App.Orders.` + this.orderId)
+                    .listen('PizzaOrderStatusUpdated', (response) => {
+                        const status = response.order.status;
+
+                        console.log(response);
+
+                         this.updateSteps(status);
+                    });
             },
 
             async fetchOrderProgress() {
